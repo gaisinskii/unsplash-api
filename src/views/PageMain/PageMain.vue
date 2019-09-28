@@ -1,9 +1,6 @@
 <template>
   <base-page name="main">
-    <h1 class="page__test1">
-      main page is here!
-    </h1>
-    <span class="page__test2">hahaha</span>
+    <footer class="page__pagination" />
   </base-page>
 </template>
 
@@ -20,11 +17,13 @@ export default {
 <style lang="scss">
 .page--main {
   .page {
-    &__test1 {
-      font-size: $test1;
-    }
-    &__test2 {
-      color: $test2;
+    &__pagination {
+      position: fixed;
+      bottom: 0;
+      height: 60px;
+      width: 100%;
+      background-color: #000;
+      opacity: 0.9;
     }
   }
 }
