@@ -43,5 +43,13 @@ export default {
       opacity: 0.9;
     }
   }
+  @media (max-width: $tablet) {
+    .page {
+      &__card-list {
+        justify-content: center;
+        max-width: unset;
+      }
+    }
+  }
 }
 </style>

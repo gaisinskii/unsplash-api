@@ -49,7 +49,6 @@ export default {
 .base-card {
   display: flex;
   flex-direction: column;
-  // height: 312px;
   &__image {
     height: 100%;
     width: 100%;
@@ -95,6 +94,24 @@ export default {
   &__views {
     display: flex;
     align-items: center;
+  }
+  @media (max-width: $tablet) {
+    &__body {
+      width: 440px;
+      height: 300px;
+    }
+    &__footer {
+      padding-bottom: 6px;
+    }
+  }
+  @media (max-width: $mobile) {
+    &__body {
+      width: 320px;
+      height: 230px;
+    }
+    &__footer {
+      padding-bottom: 0px;
+    }
   }
 }
 </style>
