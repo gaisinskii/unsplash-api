@@ -15,10 +15,19 @@
 import BasePage from '@/components/BasePage/BasePage.vue';
 import BaseCard from '@/components/BaseCard/BaseCard.vue';
 
+import { unsplash, toJson } from '@/api';
+
 export default {
   components: {
     BasePage,
     BaseCard,
+  },
+  mounted() {
+    unsplash.stats.total()
+      .then(toJson)
+      .then((json) => {
+        console.log(json);
+      });
   },
 };
 </script>
