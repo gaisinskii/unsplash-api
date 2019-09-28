@@ -1,6 +1,12 @@
 <template>
   <base-page name="main">
-    <base-card />
+    <div class="page__card-list">
+      <base-card
+        v-for="(item, index) in 10"
+        :key="index"
+      />
+    </div>
+
     <footer class="page__pagination" />
   </base-page>
 </template>
@@ -20,7 +26,14 @@ export default {
 <style lang="scss">
 .page--main {
   display: flex;
+  justify-content: center;
   .page {
+    &__card-list {
+      display: flex;
+      max-width: 660px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
     &__pagination {
       position: fixed;
       bottom: 0;
