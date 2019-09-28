@@ -1,20 +1,22 @@
 <template>
   <section class="base-card">
     <header class="base-card__header">
-      <div class="base-card__avatar">
-        <img
-          src="https://image.shutterstock.com/image-photo/portrait-beautiful-smiling-man-showing-260nw-715845643.jpg"
-          class="base-card__image"
-          alt=""
-        >
-      </div>
       <div class="base-card__user">
-        <h3 class="base-card__user-name">
-          Jason Mowry
-        </h3>
-        <p class="base-card__user-alias">
-          @jason_mowry_photo
-        </p>
+        <div class="base-card__avatar">
+          <img
+            src="https://image.shutterstock.com/image-photo/portrait-beautiful-smiling-man-showing-260nw-715845643.jpg"
+            class="base-card__image"
+            alt=""
+          >
+        </div>
+        <div class="base-card__user-info">
+          <h3 class="base-card__user-name">
+            Jason Mowry
+          </h3>
+          <p class="base-card__user-alias">
+            @jason_mowry_photo
+          </p>
+        </div>
       </div>
     </header>
     <div class="base-card__body">
@@ -55,8 +57,11 @@ export default {
   }
   &__header {
     display: flex;
-    align-items: center;
     padding: 10px;
+  }
+  &__user {
+    display: inline-flex;
+    align-items: center;
   }
   &__avatar {
     height: 30px;
