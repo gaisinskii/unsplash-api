@@ -11,7 +11,10 @@ html,body {
 * {
   margin: 0;
   padding: 0;
-  font-family: Helvetica, sans-serif;
+  font-family: 'RobotoCondensed', Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,5 +23,5 @@ html,body {
   height: 100%;
 }
 
-$test1: 90px;
-$test2: green;
+@import './_vars.scss';
+@import './_fonts.scss';
