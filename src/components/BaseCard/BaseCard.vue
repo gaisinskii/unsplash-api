@@ -4,37 +4,37 @@
       <div class="base-card__user">
         <div class="base-card__avatar">
           <img
-            src="https://image.shutterstock.com/image-photo/portrait-beautiful-smiling-man-showing-260nw-715845643.jpg"
+            :src="item.user.profile_image.small"
             class="base-card__image"
             alt=""
           >
         </div>
         <div class="base-card__user-info">
           <h3 class="base-card__user-name">
-            Jason Mowry
+            {{ item.user.first_name }} {{ item.user.last_name }}
           </h3>
           <p class="base-card__user-alias">
-            @jason_mowry_photo
+            @{{ item.user.instagram_username }}
           </p>
         </div>
       </div>
     </header>
     <div class="base-card__body">
       <img
-        src="https://ichef.bbci.co.uk/news/976/cpsprodpb/F8C9/production/_106398636_mediaitem106398635.jpg"
+        :src="item.urls.regular"
+        :alt="item.alt_description"
         class="base-card__image"
-        alt=""
       >
     </div>
     <footer class="base-card__footer">
       <div class="base-card__views">
         <p class="base-card__views-count">
-          51 200
+          {{ item.likes }}
         </p>
         <img
           src="@/assets/images/eye.svg"
           class="base-card__image"
-          alt=""
+          alt="eye icon"
         >
       </div>
     </footer>
@@ -43,7 +43,12 @@
 
 <script>
 export default {
-
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
 
@@ -54,6 +59,7 @@ export default {
   &__image {
     height: 100%;
     width: 100%;
+    object-fit: cover;
   }
   &__header {
     display: flex;

@@ -2,8 +2,9 @@
   <base-page name="main">
     <div class="page__card-list">
       <base-card
-        v-for="(item, index) in 10"
+        v-for="(item, index) in currentPageData"
         :key="index"
+        :item="item"
       />
     </div>
 
@@ -12,22 +13,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import BasePage from '@/components/BasePage/BasePage.vue';
 import BaseCard from '@/components/BaseCard/BaseCard.vue';
-
-import { unsplash, toJson } from '@/api';
 
 export default {
   components: {
     BasePage,
     BaseCard,
   },
-  mounted() {
-    unsplash.stats.total()
-      .then(toJson)
-      .then((json) => {
-        console.log(json);
-      });
+  computed: {
+    ...mapState(['currentPageData']),
+  },
+  methods: {
+    paginate(page) {
+      this.$store.dispatch('fetchCurrentPage', page);
+    },
   },
 };
 </script>
