@@ -32,7 +32,7 @@
     <footer class="base-card__footer">
       <div class="base-card__views">
         <p class="base-card__views-count">
-          {{ item.likes }}
+          {{ numberWithSpaces(item.likes) }}
         </p>
         <img
           src="@/assets/images/eye.svg"
@@ -60,6 +60,9 @@ export default {
   methods: {
     navigateToUserProfile(user) {
       window.open(`https://unsplash.com/@${user}`, '_blank');
+    },
+    numberWithSpaces(number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     },
   },
 };
