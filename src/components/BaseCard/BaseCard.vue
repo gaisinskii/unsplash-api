@@ -6,7 +6,7 @@
           <img
             :src="item.user.profile_image.small"
             class="base-card__image"
-            alt=""
+            alt="user image"
           >
         </div>
         <div class="base-card__user-info">
