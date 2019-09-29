@@ -9,15 +9,26 @@
     </div>
 
     <footer class="page__footer">
-      <div class="page__pagination">
-        test
-      </div>
+      <paginate
+        :page-count="totalPages"
+        :page-range="3"
+        :margin-pages="1"
+        :click-handler="clickCallback"
+        :prev-text="''"
+        :next-text="''"
+        :active-class="'page__pagination-item--active'"
+        :page-link-class="'page__pagination-link'"
+        :disabled-class="'page__pagination-item--disabled'"
+        :container-class="'page__pagination'"
+        :page-class="'page__pagination-item'"
+      />
     </footer>
   </base-page>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Paginate from 'vuejs-paginate';
 import BasePage from '@/components/BasePage/BasePage.vue';
 import BaseCard from '@/components/BaseCard/BaseCard.vue';
 
@@ -25,13 +36,17 @@ export default {
   components: {
     BasePage,
     BaseCard,
+    Paginate,
   },
   computed: {
     ...mapState(['currentPageData', 'totalPages', 'currentPage']),
   },
   methods: {
-    paginate(page) {
+    paginate (page) {
       this.$store.dispatch('fetchCurrentPage', page);
+    },
+    clickCallback () {
+
     },
   },
 };
@@ -61,6 +76,25 @@ export default {
     &__pagination {
       display: flex;
       height: 100%;
+      color: #fff;
+      list-style: none;
+    }
+    &__pagination-item {
+      display: flex;
+      align-items: center;
+      &--active {
+        .page__pagination-link {
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+      &:not(:last-of-type) {
+        margin-right: 10px;
+      }
+    }
+    &__pagination-link {
+      font-size: 14px;
+      outline: none;
     }
   }
   @media (max-width: $tablet) {
