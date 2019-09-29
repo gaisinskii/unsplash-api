@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLoading: false,
-    totalPages: 0,
+    totalPages: 59,
     currentPageData: [],
   },
   mutations: {
@@ -32,16 +32,6 @@ export default new Vuex.Store({
           commit('GET_CURRENT_PAGE_DATA', data);
         });
       commit('TOGGLE_LOADER', false);
-    },
-    computeTotalPages({ commit }) {
-      unsplash.stats
-        .total()
-        .then(toJson)
-        .then((data) => {
-          const itemsPerPage = 10;
-          const totalPages = Math.floor(data.total_photos / itemsPerPage);
-          commit('GET_TOTAL_PAGES', totalPages);
-        });
     },
   },
 });

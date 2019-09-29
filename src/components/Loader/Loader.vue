@@ -21,8 +21,8 @@ export default {
 <style lang="scss">
 .loader {
   display: flex;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   justify-content: center;
   align-items: center;
   &__spinner {
