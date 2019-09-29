@@ -8,7 +8,11 @@
       />
     </div>
 
-    <footer class="page__pagination" />
+    <footer class="page__footer">
+      <div class="page__pagination">
+        test
+      </div>
+    </footer>
   </base-page>
 </template>
 
@@ -23,7 +27,7 @@ export default {
     BaseCard,
   },
   computed: {
-    ...mapState(['currentPageData']),
+    ...mapState(['currentPageData', 'totalPages', 'currentPage']),
   },
   methods: {
     paginate(page) {
@@ -44,13 +48,19 @@ export default {
       flex-wrap: wrap;
       justify-content: space-between;
     }
-    &__pagination {
+    &__footer {
+      display: flex;
       position: fixed;
+      justify-content: center;
       bottom: 0;
       height: 60px;
       width: 100%;
       background-color: #000;
       opacity: 0.9;
+    }
+    &__pagination {
+      display: flex;
+      height: 100%;
     }
   }
   @media (max-width: $tablet) {

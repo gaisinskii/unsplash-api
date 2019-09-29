@@ -9,6 +9,7 @@ export default {
   created() {
     this.$store.dispatch('computeTotalPages');
     this.$store.dispatch('fetchCurrentPage', 1);
+    this.$store.commit('GET_CURRENT_PAGE', 1);
   },
 };
 </script>

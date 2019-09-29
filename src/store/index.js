@@ -15,6 +15,9 @@ export default new Vuex.Store({
     GET_TOTAL_PAGES(state, payload) {
       state.totalPages = payload;
     },
+    GET_CURRENT_PAGE(state, payload) {
+      state.currentPage = payload;
+    },
     GET_CURRENT_PAGE_DATA(state, payload) {
       state.currentPageData = payload;
     },
