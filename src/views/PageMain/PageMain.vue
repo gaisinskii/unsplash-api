@@ -1,12 +1,9 @@
 <template>
   <base-page
-    ref="list"
+    ref="page"
     name="main"
   >
-    <div
-      ref="list"
-      class="page__card-list"
-    >
+    <div class="page__card-list">
       <template v-if="!isLoading">
         <base-card
           v-for="(item, index) in currentPageData"
@@ -60,10 +57,10 @@ export default {
     window.onscroll = () => {
       const d = document.documentElement;
       const { footer } = this.$refs;
-      const eloffset = this.$refs.list.$el.offsetHeight;
+      const pageOffset = this.$refs.page.$el.offsetHeight;
       const offset = d.scrollTop + window.innerHeight;
 
-      if (offset === eloffset) {
+      if (offset === pageOffset) {
         footer.style.opacity = '0';
       } else {
         footer.style.opacity = '0.9';
