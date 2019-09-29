@@ -7,16 +7,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    totalPages: null,
-    currentPage: null,
+    totalPages: 0,
     currentPageData: [],
   },
   mutations: {
     GET_TOTAL_PAGES(state, payload) {
       state.totalPages = payload;
-    },
-    GET_CURRENT_PAGE(state, payload) {
-      state.currentPage = payload;
     },
     GET_CURRENT_PAGE_DATA(state, payload) {
       state.currentPageData = payload;
@@ -37,6 +33,7 @@ export default new Vuex.Store({
         .then(toJson)
         .then((data) => {
           const itemsPerPage = 10;
+          console.log(data);
           const totalPages = Math.floor(data.total_photos / itemsPerPage);
           commit('GET_TOTAL_PAGES', totalPages);
         });

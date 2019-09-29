@@ -13,9 +13,10 @@
         :page-count="totalPages"
         :page-range="3"
         :margin-pages="1"
-        :click-handler="clickCallback"
+        :click-handler="paginate"
         :prev-text="''"
         :next-text="''"
+        :break-view-class="'page__pagination-item--truncate'"
         :active-class="'page__pagination-item--active'"
         :page-link-class="'page__pagination-link'"
         :disabled-class="'page__pagination-item--disabled'"
@@ -39,14 +40,11 @@ export default {
     Paginate,
   },
   computed: {
-    ...mapState(['currentPageData', 'totalPages', 'currentPage']),
+    ...mapState(['currentPageData', 'totalPages']),
   },
   methods: {
-    paginate (page) {
+    paginate(page) {
       this.$store.dispatch('fetchCurrentPage', page);
-    },
-    clickCallback () {
-
     },
   },
 };
@@ -86,6 +84,13 @@ export default {
         .page__pagination-link {
           font-size: 18px;
           font-weight: bold;
+        }
+      }
+      &--truncate {
+        &:hover {
+          .page__pagination-link {
+            cursor: default;
+          }
         }
       }
       &:not(:last-of-type) {

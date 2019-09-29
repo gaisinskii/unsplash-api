@@ -1,7 +1,10 @@
 <template>
   <section class="base-card">
     <header class="base-card__header">
-      <div class="base-card__user">
+      <div
+        class="base-card__user"
+        @click="navigateToUserProfile(item.user.username)"
+      >
         <div class="base-card__avatar">
           <img
             :src="item.user.profile_image.small"
@@ -14,7 +17,7 @@
             {{ item.user.first_name }} {{ item.user.last_name }}
           </h3>
           <p class="base-card__user-alias">
-            @{{ item.user.instagram_username }}
+            @{{ item.user.username }}
           </p>
         </div>
       </div>
@@ -49,6 +52,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+    navigateToUserProfile(user) {
+      window.open(`https://unsplash.com/@${user}`, '_blank');
+    },
+  },
 };
 </script>
 
@@ -68,6 +76,9 @@ export default {
   &__user {
     display: inline-flex;
     align-items: center;
+    &:hover {
+      cursor: pointer;
+    }
   }
   &__avatar {
     height: 30px;
