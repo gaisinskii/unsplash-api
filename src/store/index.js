@@ -7,10 +7,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isLoading: false,
     totalPages: 0,
     currentPageData: [],
   },
   mutations: {
+    TOGGLE_LOADER(state, payload) {
+      state.isLoading = payload;
+    },
     GET_TOTAL_PAGES(state, payload) {
       state.totalPages = payload;
     },
@@ -19,13 +23,15 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchCurrentPage({ commit }, page) {
-      unsplash.photos
+    async fetchCurrentPage({ commit }, page) {
+      commit('TOGGLE_LOADER', true);
+      await unsplash.photos
         .listPhotos(page, 10)
         .then(toJson)
         .then((data) => {
           commit('GET_CURRENT_PAGE_DATA', data);
         });
+      commit('TOGGLE_LOADER', false);
     },
     computeTotalPages({ commit }) {
       unsplash.stats

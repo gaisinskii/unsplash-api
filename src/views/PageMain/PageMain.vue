@@ -1,11 +1,13 @@
 <template>
   <base-page name="main">
     <div class="page__card-list">
-      <base-card
-        v-for="(item, index) in currentPageData"
-        :key="index"
-        :item="item"
-      />
+      <template v-if="!isLoading">
+        <base-card
+          v-for="(item, index) in currentPageData"
+          :key="index"
+          :item="item"
+        />
+      </template>
     </div>
 
     <footer class="page__footer">
@@ -24,12 +26,14 @@
         :page-class="'page__pagination-item'"
       />
     </footer>
+    <loader :is-loading="isLoading" />
   </base-page>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import Paginate from 'vuejs-paginate';
+import Loader from '@/components/Loader/Loader.vue';
 import BasePage from '@/components/BasePage/BasePage.vue';
 import BaseCard from '@/components/BaseCard/BaseCard.vue';
 
@@ -38,9 +42,10 @@ export default {
     BasePage,
     BaseCard,
     Paginate,
+    Loader,
   },
   computed: {
-    ...mapState(['currentPageData', 'totalPages']),
+    ...mapState(['currentPageData', 'totalPages', 'isLoading']),
   },
   methods: {
     paginate(page) {
