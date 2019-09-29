@@ -39,7 +39,6 @@ export default new Vuex.Store({
         .then(toJson)
         .then((data) => {
           const itemsPerPage = 10;
-          console.log(data);
           const totalPages = Math.floor(data.total_photos / itemsPerPage);
           commit('GET_TOTAL_PAGES', totalPages);
         });

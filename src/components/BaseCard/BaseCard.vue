@@ -45,12 +45,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
     item: {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    ...mapState(['isLoading']),
   },
   methods: {
     navigateToUserProfile(user) {
