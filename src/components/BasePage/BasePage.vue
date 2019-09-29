@@ -20,6 +20,6 @@ export default {
 
 <style lang="scss">
 .base-page {
-  height: 100%;
+  height: auto;
 }
 </style>

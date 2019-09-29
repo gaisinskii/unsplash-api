@@ -1,6 +1,12 @@
 <template>
-  <base-page name="main">
-    <div class="page__card-list">
+  <base-page
+    ref="list"
+    name="main"
+  >
+    <div
+      ref="list"
+      class="page__card-list"
+    >
       <template v-if="!isLoading">
         <base-card
           v-for="(item, index) in currentPageData"
@@ -10,7 +16,10 @@
       </template>
     </div>
 
-    <footer class="page__footer">
+    <footer
+      ref="footer"
+      class="page__footer"
+    >
       <paginate
         :page-count="totalPages"
         :page-range="3"
@@ -47,6 +56,20 @@ export default {
   computed: {
     ...mapState(['currentPageData', 'totalPages', 'isLoading']),
   },
+  mounted() {
+    window.onscroll = () => {
+      const d = document.documentElement;
+      const { footer } = this.$refs;
+      const eloffset = this.$refs.list.$el.offsetHeight;
+      const offset = d.scrollTop + window.innerHeight;
+
+      if (offset === eloffset) {
+        footer.style.opacity = '0';
+      } else {
+        footer.style.opacity = '0.9';
+      }
+    };
+  },
   methods: {
     paginate(page) {
       this.$store.dispatch('fetchCurrentPage', page);
@@ -58,7 +81,8 @@ export default {
 <style lang="scss">
 .page--main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   .page {
     &__card-list {
       display: flex;
@@ -75,6 +99,7 @@ export default {
       width: 100%;
       background-color: #000;
       opacity: 0.9;
+      transition: opacity 0.3s ease;
     }
     &__pagination {
       display: flex;
